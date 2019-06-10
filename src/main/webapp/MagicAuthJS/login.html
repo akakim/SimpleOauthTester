@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="js/magicAuth.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+    var magicAuth = magicAuth();
+    magicAuth.init('client', 'http://localhost:8084/MagicAuthJS/login.html', 'openid email profile', function(response) {
+        if(response == 1){
+        	/*
+        	* 	사용자 결과내에 해당 토큰값 가져오는 api
+        	*	1. 특정(key)를 이용한 사용자값 : .userInfo('Key')
+        	*	2. 사용자 정보 전체 : .userInfo()
+        	*/
+        	console.log(magicAuth.userInfo('OPENID'));
+        	console.log(magicAuth.userInfo());
+        	
+        	// 샘플 document 삽입
+        	var p = document.createElement("p");
+        	var txt = document.createTextNode("사용자 정보 : " + JSON.stringify(magicAuth.userInfo()));
+        	p.appendChild(txt);
+        	document.getElementById("userInfo").appendChild(p);
+        	document.getElementById("loginbtn").style.display = 'none';
+        }
+    });
+</script>
+
+<div id="userInfo">
+</div>
+
+<button id ="loginbtn" onclick="magicAuth.login()"> 로그인 </button>
+</body>
+</html>
