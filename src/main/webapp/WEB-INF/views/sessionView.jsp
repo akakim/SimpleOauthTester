@@ -167,10 +167,7 @@ form table td {
 				$("#scope").html(jsonObj.scope );
 				$("#token_type").html(jsonObj.token_type );
 				$("#expires_in").html(jsonObj.expires_in );
-//				document.getElementById("access_token").firstChild.value = jsonObj.access_token;
-				
-				
-				
+
 			},
 			error: function (e){
 				alert(e.responseText);
